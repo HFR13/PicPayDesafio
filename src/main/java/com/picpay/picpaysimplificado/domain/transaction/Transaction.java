@@ -15,6 +15,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity(name = "transactions")
@@ -22,6 +23,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of="id")
 public class Transaction {
 
@@ -35,18 +37,11 @@ public class Transaction {
     @JoinColumn(name="sender_id")
     private User sender;//Remetente
 
-    @ManyToOne
-    /*Isso significa que um usuário pode ter várias transações, 
-    * mas uma transação só pode ter um usuário.
-    */
+    @ManyToOne//Isso significa que um usuário pode ter várias transações, mas uma transação só pode ter um usuário.
+    @JoinColumn(name="receiver_id")
     private User receiver;//Receptor
-    private LocalDateTime timestamp;//informa quando foi realizada a transação
+    private LocalDateTime timestamp;//informa data e hora da transação
     
-
-    
-
-
-
 
     
 }

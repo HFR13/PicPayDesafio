@@ -3,6 +3,7 @@ package com.picpay.picpaysimplificado.domain.user;
 import java.math.BigDecimal;
 
 import com.picpay.picpaysimplificado.domain.UserType;
+import com.picpay.picpaysimplificado.dtos.UserDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,7 +30,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
-    private String lasteName;
+    private String lastName;
     @Column(unique = true)
     private String document;
     @Column(unique = true)
@@ -38,6 +39,18 @@ public class User {
     private BigDecimal balance;
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public User(UserDTO data){
+
+        this.firstName = data.firstName();
+        this.lastName = data.lastName();
+        this.document = data.document();
+        this.email = data.email();
+        this.password = data.password();
+        this.balance = data.balance();
+        this.userType = data.userType();
+
+    }
 
     
 
